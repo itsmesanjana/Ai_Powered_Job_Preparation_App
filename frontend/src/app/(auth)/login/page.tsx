@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Loader2 } from "lucide-react";
+import { API_URL } from "@/lib/config";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,8 +24,7 @@ export default function LoginPage() {
 
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${baseUrl}${endpoint}`, {
+      const res = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
