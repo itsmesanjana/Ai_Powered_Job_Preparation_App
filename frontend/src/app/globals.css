@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --primary: #8b5cf6; /* Vibrant purple */
+  --primary-hover: #7c3aed;
+  --card-bg: rgba(24, 24, 27, 0.7);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility (Optimized for performance) */
+.glass {
+  background: rgba(24, 24, 27, 0.7); /* Slightly more transparent to let the gradient mesh show through */
+  border: 1px solid var(--border);
+}
+
+/* Premium Animated Mesh Background */
+.bg-mesh {
+  background: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+  background-size: 200% 200%;
+  animation: mesh-movement 15s ease infinite alternate;
+}
+
+@keyframes mesh-movement {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Premium Shimmering Border Hover Effect */
+.glass-shimmer {
+  position: relative;
+}
+
+.glass-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    var(--primary) 50%,
+    transparent 80%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.glass-shimmer:hover::before {
+  opacity: 1;
+  animation: shimmer-border 2s linear infinite;
+}
+
+@keyframes shimmer-border {
+  0% { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+
+/* Neon Glows */
+.neon-glow {
+  box-shadow: 0 0 40px -10px var(--primary);
+}
